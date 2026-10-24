@@ -12,7 +12,7 @@ const APPS=[
 {id:'douyin',name:'抖音',icon:'douyin.jpg',crop:[1328,1206,61,0,1206]}
 ];
 const $=id=>document.getElementById(id);
-const show=id=>{['lock','pin','home','app'].forEach(k=>$(k).classList.toggle('hidden',k!==id));if(id!=='app')document.querySelector('.phone').classList.remove('tf-active');};
+const show=id=>{['lock','pin','home','app'].forEach(k=>$(k).classList.toggle('hidden',k!==id));if(id!=='app')document.querySelector('.phone').classList.remove('tf-active','music-active');};
 function clock(){const d=new Date();const t=d.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit',hour12:false});$('bigTime').textContent=t;$('statusTime').textContent=t;$('dateText').textContent=new Intl.DateTimeFormat('zh-CN',{month:'long',day:'numeric',weekday:'long'}).format(d)}
 clock();setInterval(clock,30000);
 let entered='', errorTimer;
@@ -45,7 +45,7 @@ function appButton(a){
 }
 dots();
 APPS.forEach(a=>$(a.dock?'dock':'appgrid').appendChild(appButton(a)));
-function openApp(a){$('app').classList.remove('tf-app');document.querySelector('.phone').classList.remove('tf-active');$('appTitle').textContent=a.name;if(a.id==='tfamily'){openTFamily();return;}const descriptions={wechat:'聊天列表、预设发送选项和对方回复：等待你提供剧本。',photos:'相册照片及排列顺序：等待你上传。',music:'最近播放、歌单、动态及音乐素材：等待你提供。',phone:'通话记录、来电触发条件和接听内容：等待你提供。',tfamily:'泡泡消息和预设回复选项：等待你提供剧本。',douyin:'私聊界面及内容：等待你提供。'};$('appContent').replaceChildren();const box=document.createElement('div');box.className='placeholder';const title=document.createElement('b');title.textContent=a.name+' · 待完善';const p=document.createElement('p');p.textContent=descriptions[a.id];box.append(title,p);$('appContent').append(box);show('app')}
+function openApp(a){$('app').classList.remove('tf-app','music-app');document.querySelector('.phone').classList.remove('tf-active','music-active');$('appTitle').textContent=a.name;if(a.id==='tfamily'){openTFamily();return;}if(a.id==='music'){openMusic();return;}const descriptions={wechat:'聊天列表、预设发送选项和对方回复：等待你提供剧本。',photos:'相册照片及排列顺序：等待你上传。',music:'最近播放、歌单、动态及音乐素材：等待你提供。',phone:'通话记录、来电触发条件和接听内容：等待你提供。',tfamily:'泡泡消息和预设回复选项：等待你提供剧本。',douyin:'私聊界面及内容：等待你提供。'};$('appContent').replaceChildren();const box=document.createElement('div');box.className='placeholder';const title=document.createElement('b');title.textContent=a.name+' · 待完善';const p=document.createElement('p');p.textContent=descriptions[a.id];box.append(title,p);$('appContent').append(box);show('app')}
 $('unlock').addEventListener('click',beginPin);$('cancelPin').addEventListener('click',()=>{if(entered.length)key('⌫');else{resetPin();show('lock')}});$('backHome').addEventListener('click',()=>show('home'));$('homebar').addEventListener('click',()=>{if(!$('lock').classList.contains('hidden'))beginPin();else if(!$('pin').classList.contains('hidden')){resetPin();show('lock');}else show('home')});
 let touchY=null;$('lock').addEventListener('touchstart',e=>touchY=e.touches[0].clientY,{passive:true});$('lock').addEventListener('touchend',e=>{if(touchY!==null&&touchY-e.changedTouches[0].clientY>45){beginPin()}touchY=null},{passive:true});
 window.addEventListener('keydown',e=>{if(!$('pin').classList.contains('hidden')){if(/^\d$/.test(e.key))key(e.key);if(e.key==='Backspace'){e.preventDefault();key('⌫')}}});

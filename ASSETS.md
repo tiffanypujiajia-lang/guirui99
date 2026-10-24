@@ -30,3 +30,15 @@
 
 - `assets/originals/tfamily-list-reference.jpg`：我的泡泡列表参考及列表猫头像；原始字节不变；SHA-256 `2818bb88108be2a3c775376add362bb6ec06231ad16fd995a85d2853707677c3`
 - `assets/originals/tfamily-chat-reference.jpg`：聊天参考及两侧头像；原始字节不变；SHA-256 `33b38070498029f3d3e30df07addea3dba175255be78fd59df34a288db055d0e`
+
+## v1.3 网易云参考和音乐
+
+六张截图与 MP3 均由用户提供，源文件逐字节复制，不修改或转码；保留原始文件。界面只呈现截图已有文字和封面，未添加新剧情。
+
+- `assets/originals/music-reference-1.png`：用户图1；SHA-256 `e9c00f422606d51647a2064215acce361fd67854ae29e2c3adf57b83d83ad965`
+- `assets/originals/music-reference-2.png`：用户图2；SHA-256 `874c0032b8f9c9cabd77506ba71baf66ddbf291798c913edff1d184761f66286`
+- `assets/originals/music-reference-3.png`：用户图3；SHA-256 `0acfa54579ed93119fcaa6bb1e490f2e6b2853f5264474cfd3cc4290aacf60cc`
+- `assets/originals/music-reference-4.png`：用户图4；SHA-256 `a144086cf96c375c2e1e06c38c26200c62d1a027a9cf274bd15b8637fa1f372b`
+- `assets/originals/music-reference-5.png`：用户图5；SHA-256 `635885bd8a055e0a10cb64ed2e8dbcf7e72fe11c0b7bd39db4a40dd158f45c3d`
+- `assets/originals/music-reference-6.png`：用户图6；SHA-256 `7a22c0399d37a569a1f3de829935715a6b40a65e5b10f3a28786ec519eaff599`
+- `assets/audio/sun-earth.mp3`：用户的“太阳与地球.mp3”；SHA-256 `d9153ced516e9bdcbdbca3d00ad00e3576f4af4d558f2580901250db765685ec`
