@@ -47,3 +47,6 @@
 @media(max-width:350px){.m-quick{gap:7px;padding-left:10px;padding-right:10px}.m-quick span{font-size:11px;padding:8px}.m-user-name strong{font-size:16px}.m-row-extra{font-size:8px}.m-profile-row{gap:9px;padding-left:11px;padding-right:11px}.m-track{font-size:11px}.m-detail-header h1{font-size:14px}.m-rank-row{padding-left:10px;padding-right:10px;gap:8px}.m-rank-row .m-row-title{font-size:12px}.m-note-actions{font-size:10px}}
 
 .music-app[data-music-page="profile"]{background:linear-gradient(#30170e 40px,#0d0d12 40px)}.music-app[data-music-page="liked"]{background:#404040}.m-episode-play{display:flex;align-items:center;gap:12px;font-size:18px;padding:15px 16px}.m-episode-play .m-red-play{width:25px;height:25px;font-size:14px}
+
+/* Ordered T-FAMILY history. Source screenshots remain unchanged. */
+.tf-chat{container-type:inline-size}.tf-chat-section{display:flow-root}.tf-image-message{padding:0;background:none!important;border-radius:4px;max-width:70%}.tf-photo{position:relative;display:block;overflow:hidden;max-width:100%;border-radius:4px}.tf-photo img{position:absolute;max-width:none}.tf-voice{max-width:calc(100% - 100px)}

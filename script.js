@@ -55,9 +55,9 @@ const TF_NAME='zhang憨螨';
 function tfElement(tag,className,text){const e=document.createElement(tag);e.className=className;if(text!==undefined)e.textContent=text;return e;}
 function tfAvatar(kind){
  const avatar=tfElement('span','tf-avatar');const img=document.createElement('img');img.alt='';img.draggable=false;
- const list=kind==='list';img.src='assets/originals/tfamily-'+(list?'list':'chat')+'-reference.jpg';
+ const list=kind==='list';img.src=list?'assets/originals/tfamily-list-reference.jpg':'assets/originals/tfamily-history-1.jpg';
  // CSS windows preserve every byte of both reference uploads.
- const [w,h,x,y,size]=list?[851,1847,31,260,119]:kind==='self'?[1320,2522,1162,465,126]:[1320,2522,33,288,126];
+ const [w,h,x,y,size]=list?[851,1847,31,260,119]:kind==='self'?[1320,2086,1161,474,126]:[1320,2086,33,119,126];
  img.style.cssText=`width:${w/size*100}%;height:${h/size*100}%;left:${-x/size*100}%;top:${-y/size*100}%`;
  avatar.append(img);return avatar;
 }
@@ -79,19 +79,30 @@ function openTFamily(){
 function openTFChat(){
  const view=tfElement('div','tf-view tf-chat');view.append(tfHeader(true));
  const history=tfElement('div','tf-history');history.setAttribute('role','log');history.setAttribute('aria-label','与'+TF_NAME+'的聊天记录');
- const timestamp=text=>history.append(tfElement('div','tf-timestamp',text));
- function message(text,self=false,seconds=0){
-  const row=tfElement('div','tf-message'+(self?' tf-self':''));
-  const bubble=tfElement('div','tf-bubble'+(seconds?' tf-voice':''));
-  if(seconds){bubble.setAttribute('aria-label',seconds+'秒语音，尚未提供音频');bubble.title='尚未提供音频';const wave=tfElement('span','tf-wave','◖))');wave.setAttribute('aria-hidden','true');bubble.append(wave,tfElement('span','',seconds+'″'));}
-  else bubble.textContent=text;
-  row.append(tfAvatar(self?'self':'other'),bubble);history.append(row);
+ history.tabIndex=0;
+ for(const section of TF_CHAT_SECTIONS){
+  const group=tfElement('section','tf-chat-section');group.dataset.reference=section.reference;group.setAttribute('aria-label','聊天记录第'+section.reference+'部分');
+  const timestamp=text=>group.append(tfElement('div','tf-timestamp',text));
+  if(section.timestamp)timestamp(section.timestamp);
+  for(const item of section.messages){
+   if(item.timestamp)timestamp(item.timestamp);
+   const row=tfElement('div','tf-message'+(item.self?' tf-self':''));
+   const bubble=tfElement('div','tf-bubble'+(item.seconds?' tf-voice':'')+(item.image?' tf-image-message':''));
+   if(item.seconds){
+    bubble.setAttribute('aria-label',item.seconds+'秒语音，尚未提供音频');bubble.title='尚未提供音频';
+    bubble.style.width=Math.min(235,90+item.seconds*2.5)+'px';
+    const wave=tfElement('span','tf-wave','◖))');wave.setAttribute('aria-hidden','true');bubble.append(wave,tfElement('span','',item.seconds+'″'));
+   }else if(item.image){
+    const [x,y,w,h]=item.image,sourceHeight={1:2086,3:1828,4:1970}[section.reference];
+    const photo=tfElement('span','tf-photo');photo.style.width=(w/1320*100)+'cqw';photo.style.aspectRatio=w+'/'+h;
+    const img=document.createElement('img');img.src='assets/originals/tfamily-history-'+section.reference+'.jpg';img.alt=item.alt;img.draggable=false;
+    img.style.cssText=`width:${1320/w*100}%;height:${sourceHeight/h*100}%;left:${-x/w*100}%;top:${-y/h*100}%`;
+    photo.append(img);bubble.append(photo);
+   }else bubble.textContent=item.text;
+   row.append(tfAvatar(item.self?'self':'other'),bubble);group.append(row);
+  }
+  history.append(group);
  }
- timestamp('10月18日 22:19');message('',false,3);message('喜欢。很好听。',true);
- timestamp('10月18日 22:50');message('',false,12);
- message('这首歌是我一点点含辛茹苦在突围中挤出时间制作的😭😭😭😭真的是全程本人手搓糊来的😭😭😭😭😭我是手艺人😭😭😭😭😭匠心制作的😭😭😭😭😭😭😭');
- message('这是我的第一个小宝宝😭😭😭😭😭😭');
- message('是啊，我看着你做出来的',true);message('张函瑞厉害！👍🏻',true);message('小宝宝的小宝宝',true);
  view.append(history);
  const composer=tfElement('div','tf-composer');const input=tfElement('input','');input.placeholder='输入消息...';input.readOnly=true;input.setAttribute('aria-label','输入消息（展示，尚未设置发送规则）');
  const send=tfElement('button','tf-send');send.type='button';send.disabled=true;send.setAttribute('aria-label','发送（尚未设置发送规则）');send.innerHTML='<svg viewBox="0 0 30 30" fill="none" stroke="white" stroke-width="1.6"><path d="m5 14 19-9-4 21-6-8-9-4Z M14 18 24 5"/></svg>';

@@ -42,3 +42,14 @@
 - `assets/originals/music-reference-5.png`：用户图5；SHA-256 `635885bd8a055e0a10cb64ed2e8dbcf7e72fe11c0b7bd39db4a40dd158f45c3d`
 - `assets/originals/music-reference-6.png`：用户图6；SHA-256 `7a22c0399d37a569a1f3de829935715a6b40a65e5b10f3a28786ec519eaff599`
 - `assets/audio/sun-earth.mp3`：用户的“太阳与地球.mp3”；SHA-256 `d9153ced516e9bdcbdbca3d00ad00e3576f4af4d558f2580901250db765685ec`
+
+## v1.4 T-FAMILY 六段聊天参考
+
+按用户本次图一到图六顺序呈现；文字、消息图片及新头像均来自这六张参考。原件逐字节复制，旧素材完整保留。
+
+- `assets/originals/tfamily-history-1.jpg`：图1；SHA-256 `4ee321df40ef40ce7813be54922ad05dcf3b67209cf31958e4e548aa88702e0f`
+- `assets/originals/tfamily-history-2.jpg`：图2；SHA-256 `ba03fda2f6d550c1fe9ecae869a9fc6181e6f5c02a09719751bbec58a217f826`
+- `assets/originals/tfamily-history-3.jpg`：图3；SHA-256 `1e026c54f57d3e7ccc26ebeadd1327a572bbc4b507add2493463b5cedbe7b6b8`
+- `assets/originals/tfamily-history-4.jpg`：图4；SHA-256 `4fb1d18bb03ef63d3b1c612d8c10b6cade4a1f0ddbb93d10e5b136d3f62a9cbe`
+- `assets/originals/tfamily-history-5.jpg`：图5；SHA-256 `1a59648fcc1f7bdfc9d5b2db716d89e26037dd0d17760b7d00674ebbe4c58267`
+- `assets/originals/tfamily-history-6.jpg`：图6；SHA-256 `bde813e2a9594e30ac45709b3274cfa1b4797ca8999869ec67fedcb43dfb576b`
