@@ -50,3 +50,5 @@
 
 /* Ordered T-FAMILY history. Source screenshots remain unchanged. */
 .tf-chat{container-type:inline-size}.tf-chat-section{display:flow-root}.tf-image-message{padding:0;background:none!important;border-radius:4px;max-width:70%}.tf-photo{position:relative;display:block;overflow:hidden;max-width:100%;border-radius:4px}.tf-photo img{position:absolute;max-width:none}.tf-voice{max-width:calc(100% - 100px)}
+
+.tf-composer{margin:0}.tf-composer input{font-size:16px}.tf-send{cursor:pointer}.tf-send-notice{position:absolute;z-index:30;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100% - 40px);max-width:480px;padding:20px 17px;background:#1b242df5;color:#f4f5f8;border-radius:7px;text-align:center;font-size:16px;line-height:1.7;box-shadow:0 4px 18px #0002;pointer-events:none}.tf-chat{position:relative}

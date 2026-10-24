@@ -34,7 +34,7 @@ const TF_CHAT_SECTIONS=[
   {image:[193,604,340,440],alt:'穿浅蓝色衣服的小狗照片二'},
   {text:'今天遇到了熟🐶'},
   {self:true,text:'我们不熟了是吗 最熟悉的陌生人'},
-  {self:true,text:'为什么不来找我和么么三玩'},
+  {self:true,text:'为什么不来找我和幺幺三玩'},
   {text:'猜出它是谁了吗'},
   {self:true,text:'不想猜'}
  ]},

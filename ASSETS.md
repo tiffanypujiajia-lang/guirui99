@@ -53,3 +53,7 @@
 - `assets/originals/tfamily-history-4.jpg`：图4；SHA-256 `4fb1d18bb03ef63d3b1c612d8c10b6cade4a1f0ddbb93d10e5b136d3f62a9cbe`
 - `assets/originals/tfamily-history-5.jpg`：图5；SHA-256 `1a59648fcc1f7bdfc9d5b2db716d89e26037dd0d17760b7d00674ebbe4c58267`
 - `assets/originals/tfamily-history-6.jpg`：图6；SHA-256 `bde813e2a9594e30ac45709b3274cfa1b4797ca8999869ec67fedcb43dfb576b`
+
+## v1.5 发送限制参考
+
+- `assets/originals/tfamily-send-limit-reference.jpg`：用户提供的提示样式参考，原样保存；SHA-256 `9cb0cd1022306a7c3aed6733924acd61074826250e95ee15dbb62e51c6d174da`。页面以真实文字和CSS还原提示。

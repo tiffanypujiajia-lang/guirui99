@@ -12,7 +12,7 @@ const APPS=[
 {id:'douyin',name:'抖音',icon:'douyin.jpg',crop:[1328,1206,61,0,1206]}
 ];
 const $=id=>document.getElementById(id);
-const show=id=>{['lock','pin','home','app'].forEach(k=>$(k).classList.toggle('hidden',k!==id));if(id!=='app')document.querySelector('.phone').classList.remove('tf-active','music-active');};
+const show=id=>{if(id!=='app')window.dispatchEvent(new Event('phone:leave-music'));['lock','pin','home','app'].forEach(k=>$(k).classList.toggle('hidden',k!==id));if(id!=='app')document.querySelector('.phone').classList.remove('tf-active','music-active');};
 function clock(){const d=new Date();const t=d.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit',hour12:false});$('bigTime').textContent=t;$('statusTime').textContent=t;$('dateText').textContent=new Intl.DateTimeFormat('zh-CN',{month:'long',day:'numeric',weekday:'long'}).format(d)}
 clock();setInterval(clock,30000);
 let entered='', errorTimer;
@@ -45,7 +45,7 @@ function appButton(a){
 }
 dots();
 APPS.forEach(a=>$(a.dock?'dock':'appgrid').appendChild(appButton(a)));
-function openApp(a){$('app').classList.remove('tf-app','music-app');document.querySelector('.phone').classList.remove('tf-active','music-active');$('appTitle').textContent=a.name;if(a.id==='tfamily'){openTFamily();return;}if(a.id==='music'){openMusic();return;}const descriptions={wechat:'聊天列表、预设发送选项和对方回复：等待你提供剧本。',photos:'相册照片及排列顺序：等待你上传。',music:'最近播放、歌单、动态及音乐素材：等待你提供。',phone:'通话记录、来电触发条件和接听内容：等待你提供。',tfamily:'泡泡消息和预设回复选项：等待你提供剧本。',douyin:'私聊界面及内容：等待你提供。'};$('appContent').replaceChildren();const box=document.createElement('div');box.className='placeholder';const title=document.createElement('b');title.textContent=a.name+' · 待完善';const p=document.createElement('p');p.textContent=descriptions[a.id];box.append(title,p);$('appContent').append(box);show('app')}
+function openApp(a){if(a.id!=='music')window.dispatchEvent(new Event('phone:leave-music'));$('app').classList.remove('tf-app','music-app');document.querySelector('.phone').classList.remove('tf-active','music-active');$('appTitle').textContent=a.name;if(a.id==='tfamily'){openTFamily();return;}if(a.id==='music'){openMusic();return;}const descriptions={wechat:'聊天列表、预设发送选项和对方回复：等待你提供剧本。',photos:'相册照片及排列顺序：等待你上传。',music:'最近播放、歌单、动态及音乐素材：等待你提供。',phone:'通话记录、来电触发条件和接听内容：等待你提供。',tfamily:'泡泡消息和预设回复选项：等待你提供剧本。',douyin:'私聊界面及内容：等待你提供。'};$('appContent').replaceChildren();const box=document.createElement('div');box.className='placeholder';const title=document.createElement('b');title.textContent=a.name+' · 待完善';const p=document.createElement('p');p.textContent=descriptions[a.id];box.append(title,p);$('appContent').append(box);show('app')}
 $('unlock').addEventListener('click',beginPin);$('cancelPin').addEventListener('click',()=>{if(entered.length)key('⌫');else{resetPin();show('lock')}});$('backHome').addEventListener('click',()=>show('home'));$('homebar').addEventListener('click',()=>{if(!$('lock').classList.contains('hidden'))beginPin();else if(!$('pin').classList.contains('hidden')){resetPin();show('lock');}else show('home')});
 let touchY=null;$('lock').addEventListener('touchstart',e=>touchY=e.touches[0].clientY,{passive:true});$('lock').addEventListener('touchend',e=>{if(touchY!==null&&touchY-e.changedTouches[0].clientY>45){beginPin()}touchY=null},{passive:true});
 window.addEventListener('keydown',e=>{if(!$('pin').classList.contains('hidden')){if(/^\d$/.test(e.key))key(e.key);if(e.key==='Backspace'){e.preventDefault();key('⌫')}}});
@@ -104,8 +104,14 @@ function openTFChat(){
   history.append(group);
  }
  view.append(history);
- const composer=tfElement('div','tf-composer');const input=tfElement('input','');input.placeholder='输入消息...';input.readOnly=true;input.setAttribute('aria-label','输入消息（展示，尚未设置发送规则）');
- const send=tfElement('button','tf-send');send.type='button';send.disabled=true;send.setAttribute('aria-label','发送（尚未设置发送规则）');send.innerHTML='<svg viewBox="0 0 30 30" fill="none" stroke="white" stroke-width="1.6"><path d="m5 14 19-9-4 21-6-8-9-4Z M14 18 24 5"/></svg>';
+ const composer=tfElement('form','tf-composer');
+ const input=tfElement('input','');input.placeholder='输入消息...';input.type='text';input.autocomplete='off';input.enterKeyHint='send';input.setAttribute('aria-label','输入消息');
+ const send=tfElement('button','tf-send');send.type='submit';send.setAttribute('aria-label','发送');send.innerHTML='<svg viewBox="0 0 30 30" fill="none" stroke="white" stroke-width="1.6"><path d="m5 14 19-9-4 21-6-8-9-4Z M14 18 24 5"/></svg>';
+ const notice=tfElement('div','tf-send-notice hidden','你已经留言了3条消息，请待他回复后再继续发送');notice.setAttribute('role','alert');
+ let noticeTimer,composing=false;
+ input.addEventListener('compositionstart',()=>composing=true);input.addEventListener('compositionend',()=>composing=false);
+ composer.addEventListener('submit',e=>{e.preventDefault();if(composing)return;clearTimeout(noticeTimer);notice.classList.remove('hidden');noticeTimer=setTimeout(()=>notice.classList.add('hidden'),3000);});
+ view.append(notice);
  composer.append(input,send);view.append(composer);$('appContent').replaceChildren(view);
 }
 

@@ -2,6 +2,7 @@
 // Screens and labels are defined by the user's six references. Only one audio was supplied.
 const musicAudio=new Audio('assets/audio/sun-earth.mp3');
 musicAudio.preload='metadata';
+window.addEventListener('phone:leave-music',()=>musicAudio.pause());
 let musicTab='音乐',musicPage='profile';
 function mEl(tag,cls,text){const e=document.createElement(tag);e.className=cls;if(text!==undefined)e.textContent=text;return e;}
 function mButton(label,cls,action,text=label){const b=mEl('button',cls,text);b.type='button';b.setAttribute('aria-label',label);b.addEventListener('click',action);return b;}
@@ -9,7 +10,7 @@ function mArt(ref,x,y,size,cls=''){const s=mEl('span','m-art '+cls),im=document.
 function syncMusicPlayer(){document.querySelectorAll('.m-toggle').forEach(b=>{b.textContent=musicAudio.paused?'▷':'Ⅱ';b.setAttribute('aria-label',musicAudio.paused?'播放太阳与地球':'暂停太阳与地球');b.setAttribute('aria-pressed',String(!musicAudio.paused));});}
 function playMusic(){
  const promise=musicAudio.play();
- if(promise)promise.then(()=>{const s=document.querySelector('.m-audio-status');if(s)s.textContent='';syncMusicPlayer();}).catch(()=>{const s=document.querySelector('.m-audio-status');if(s)s.textContent='点击播放继续收听';syncMusicPlayer();});
+ if(promise)promise.then(()=>{if(!document.querySelector('.phone').classList.contains('music-active')||$('app').classList.contains('hidden'))musicAudio.pause();const s=document.querySelector('.m-audio-status');if(s)s.textContent='';syncMusicPlayer();}).catch(()=>{const s=document.querySelector('.m-audio-status');if(s)s.textContent='点击播放继续收听';syncMusicPlayer();});
 }
 for(const type of ['play','pause','ended','error'])musicAudio.addEventListener(type,()=>{syncMusicPlayer();if(type==='error'){const s=document.querySelector('.m-audio-status');if(s)s.textContent='音频加载失败，请点击播放重试';}});
 function openMusic(){musicTab='音乐';musicPage='profile';playMusic();renderMusic();}
