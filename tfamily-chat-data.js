@@ -9,7 +9,7 @@ const TF_CHAT_SECTIONS=[
   {seconds:58},
   {text:'我发现我今天发了很多和意为的东西👱‍♀️🩰'},
   {self:true,text:'爱听，喜欢听🩰👶'},
-  {self:true,text:'打开微信给我个发点'},
+  {self:true,text:'打开微信给我也发点'},
   {image:[193,1608,247,441],alt:'聊天中的自拍照片'}
  ]},
  {reference:2,messages:[
