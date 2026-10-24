@@ -12,7 +12,7 @@ const assert=require('node:assert/strict');
  await p.keyboard.type('0214');assert.equal(await p.locator('#home').isVisible(),true);
  assert.equal(await p.locator('.appicon img').count(),7);assert.ok(await p.locator('.appicon img').evaluateAll(imgs=>imgs.every(i=>i.complete&&i.naturalWidth>0)));
  await p.screenshot({path:require('node:path').resolve(__dirname,'../../home-preview.png')});
- for(const name of ['微信','照片','网易云音乐','电话','T-FAMILY','抖音']){await p.getByRole('button',{name,exact:true}).click();assert.equal(await p.locator('#appTitle').innerText(),name);await p.locator('#backHome').click();}
+ for(const name of ['微信','照片','网易云音乐','电话','T-FAMILY','抖音']){await p.getByRole('button',{name,exact:true}).click();assert.equal(await p.locator('#appTitle').innerText(),name);if(name==='T-FAMILY')await p.locator('#homebar').click();else await p.locator('#backHome').click();}
  await p.getByRole('button',{name:'相机（仅展示）',exact:true}).click();assert.equal(await p.locator('#home').isVisible(),true);
  await p.reload();await p.locator('#homebar').click();await p.keyboard.type('02');await p.locator('#homebar').click();await p.locator('#unlock').click();assert.equal(await p.locator('.filled').count(),0);await p.locator('#cancelPin').click();assert.equal(await p.locator('#lock').isVisible(),true);
  await p.locator('#lock').evaluate(el=>{for(const [type,y] of [['touchstart',500],['touchend',400]]){const t=new Touch({identifier:1,target:el,clientY:y});el.dispatchEvent(new TouchEvent(type,{touches:type==='touchstart'?[t]:[],changedTouches:[t],bubbles:true}));}});assert.equal(await p.locator('#pin').isVisible(),true);

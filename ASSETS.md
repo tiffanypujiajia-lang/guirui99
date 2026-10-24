@@ -13,7 +13,7 @@
 | assets/originals/douyin.jpg | 抖音 |
 | assets/originals/pin-reference.png | 用户密码页参考，未在运行页面直接展示 |
 
-授权：用户明确授权公开仓库及上传上述素材。未添加人物、聊天、音乐、来电或剧情素材。
+授权：用户明确授权公开仓库及上传上述素材。除本次用户提供的 T-FAMILY 截图内容外，未添加其他人物、聊天、音乐、来电或剧情素材。
 
 ## SHA-256
 
@@ -25,3 +25,8 @@
 - `assets/originals/tfamily.jpg`: `291fd8a280eab2427ae8d14a0a8be117925cbec120e23569d87ca8dd57913c22`
 - `assets/originals/wechat.jpg`: `e591b35253f50478986a2a1625da8a5160affc2b9b7c05874c4c3e66f92d13e4`
 - `assets/wallpaper-original.jpg`: `f237a8c4436ed3cb62580b86539c069062807e0550aa122351de32f1ebfee17a`
+
+## v1.2 用户参考
+
+- `assets/originals/tfamily-list-reference.jpg`：我的泡泡列表参考及列表猫头像；原始字节不变；SHA-256 `2818bb88108be2a3c775376add362bb6ec06231ad16fd995a85d2853707677c3`
+- `assets/originals/tfamily-chat-reference.jpg`：聊天参考及两侧头像；原始字节不变；SHA-256 `33b38070498029f3d3e30df07addea3dba175255be78fd59df34a288db055d0e`

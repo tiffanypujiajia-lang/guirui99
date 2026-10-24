@@ -14,3 +14,23 @@
 .appicon .glyph{position:relative;overflow:hidden;background:transparent}.glyph img{position:absolute;max-width:none;pointer-events:none}
 @media(max-height:740px){.pin h2{margin-top:75px}.keypad{width:245px;gap:12px 24px;margin-top:30px}.key-digit{font-size:34px}.pin{padding-bottom:30px}.error{bottom:75px}}
 @media(max-height:570px){.pin h2{margin-top:42px;margin-bottom:12px}.keypad{width:206px;gap:8px 18px;margin-top:18px}.key-digit{font-size:28px}.key-letters{font-size:9px}.pin-actions{padding-top:2px}.error{bottom:60px}}
+
+/* T-FAMILY: screenshot-defined list and chat, scoped to this app only. */
+.tf-active .status{color:#111}.tf-app{padding:42px 0 24px;background:#fff}.tf-app>.apphead{display:none}.tf-app>.appcontent{height:100%;padding:0;color:#111;overflow:hidden}
+.tf-view{height:100%;display:flex;flex-direction:column;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+.tf-header{height:57px;flex-shrink:0;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;padding:0 13px;background:white}
+.tf-header h1{text-align:center;font-size:19px;font-weight:500;margin:0;white-space:nowrap}.tf-chat .tf-header h1{font-weight:600;font-size:18px}
+.tf-add{width:20px;height:26px}.tf-add svg{width:100%;height:100%}.tf-menu{justify-self:end;width:19px;height:19px;border:1.3px solid #111;border-radius:50%;font-size:20px;line-height:11px;text-align:center}
+.tf-chat .tf-menu{border:0}.tf-back{border:0;background:none;color:#111;font-size:38px;line-height:1;padding:0;text-align:left;cursor:pointer;width:44px;height:44px}
+.tf-conversation{display:flex;align-items:center;gap:21px;width:100%;border:0;background:#fff;text-align:left;padding:20px 14px;font:inherit;color:#111;cursor:pointer}
+.tf-avatar{display:block;position:relative;flex-shrink:0;width:40px;height:40px;border-radius:50%;overflow:hidden}.tf-avatar img{position:absolute;max-width:none}
+.tf-conversation .tf-avatar{width:54px;height:54px}.tf-conversation-copy{min-width:0;display:flex;flex-direction:column;gap:9px}.tf-name{font-size:18px;white-space:nowrap}.tf-preview{font-size:14px;color:#8b8b96;white-space:nowrap}.tf-time{align-self:flex-start;margin:8px 0 0 auto;font-size:13px;color:#8b8b96;white-space:nowrap}
+.tf-history{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;background:#ededed;padding:0 10px 40px;scrollbar-width:thin}
+.tf-timestamp{text-align:center;color:#a7a7a7;font-size:12px;margin:18px 0 20px}
+.tf-message{display:flex;align-items:flex-start;gap:10px;margin-bottom:16px}.tf-bubble{max-width:calc(100% - 100px);padding:8px 11px;font-size:16px;line-height:1.5;overflow-wrap:anywhere;background:#fff;border-radius:0 23px 23px 23px;white-space:pre-wrap}
+.tf-self{flex-direction:row-reverse}.tf-self .tf-bubble{background:#97eb64;border-radius:23px 0 23px 23px}
+.tf-voice{display:flex;align-items:center;gap:10px;min-width:102px;height:39px;font-size:17px}.tf-voice[aria-label^="12"]{min-width:139px}.tf-wave{font-size:16px;font-weight:600;letter-spacing:-2px}
+.tf-composer{flex-shrink:0;display:flex;align-items:center;gap:13px;padding:10px 14px;background:#fff;border-top:1px solid #d7d7d7;min-height:62px}
+.tf-composer input{width:0;flex:1;min-width:0;border:0;border-radius:7px;background:#f1f1f1;padding:12px 10px;font:inherit;font-size:14px;color:#777;outline:none}
+.tf-send{width:33px;height:33px;flex-shrink:0;background:#97eb64;border:0;border-radius:50%;padding:5px;opacity:1}.tf-send svg{width:100%;height:100%}
+@media(max-width:350px){.tf-conversation{gap:12px}.tf-time{font-size:11px}.tf-name{font-size:16px}.tf-preview{font-size:12px}.tf-bubble{max-width:calc(100% - 64px);font-size:15px}.tf-avatar{width:35px;height:35px}.tf-message{gap:8px}}
