@@ -51,7 +51,7 @@ let touchY=null;$('lock').addEventListener('touchstart',e=>touchY=e.touches[0].c
 window.addEventListener('keydown',e=>{if(!$('pin').classList.contains('hidden')){if(/^\d$/.test(e.key))key(e.key);if(e.key==='Backspace'){e.preventDefault();key('⌫')}}});
 
 // Only the supplied screenshots define this conversation. No generated replies.
-const TF_NAME='zhang憨螨';
+const TF_NAME='zhang憨蜹';
 function tfElement(tag,className,text){const e=document.createElement(tag);e.className=className;if(text!==undefined)e.textContent=text;return e;}
 function tfAvatar(kind){
  const avatar=tfElement('span','tf-avatar');const img=document.createElement('img');img.alt='';img.draggable=false;
